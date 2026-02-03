@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenClaw Directory - Discover What AI Agents Can Do</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --coral: #FF6B4A;
+            --coral-light: #FF8B6F;
+            --sand: #FFF8F0;
+            --sand-dark: #F5EDE0;
+            --text-primary: #1A1A1A;
+            --text-secondary: #666666;
+            --text-tertiary: #999999;
+            --border: #E8E0D5;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--sand);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        header {
+            padding: 80px 0 96px;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 56px;
+            margin-bottom: 24px;
+            display: inline-block;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(2deg); }
+        }
+
+        h1 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 64px;
+            font-weight: 400;
+            color: var(--text-primary);
+            margin-bottom: 24px;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+
+        .subtitle {
+            font-size: 24px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            font-weight: 400;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .crowdsource-note {
+            font-size: 15px;
+            color: var(--text-tertiary);
+            max-width: 500px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .crowdsource-note a {
+            color: var(--coral);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s ease;
+        }
+
+        .crowdsource-note a:hover {
+            border-bottom-color: var(--coral);
+        }
+
+        /* Directory Grid */
+        .directory-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 24px;
+            margin-bottom: 120px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            border: 1px solid var(--border);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            border-color: var(--coral);
+        }
+
+        .card-icon {
+            font-size: 32px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .card h3 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 22px;
+            font-weight: 400;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            line-height: 1.3;
+            letter-spacing: -0.01em;
+        }
+
+        .card-question {
+            font-size: 15px;
+            color: var(--coral);
+            font-weight: 600;
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+
+        .card-description {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        .card-author {
+            font-size: 13px;
+            color: var(--text-tertiary);
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border);
+        }
+
+        .card-author a {
+            color: var(--coral);
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.2s ease;
+        }
+
+        .card-author a:hover {
+            opacity: 0.7;
+        }
+
+        /* Quick Recap */
+        .quick-recap {
+            background: linear-gradient(135deg, var(--coral) 0%, var(--coral-light) 100%);
+            border-radius: 24px;
+            padding: 64px;
+            margin-bottom: 80px;
+            box-shadow: 0 20px 60px rgba(255, 107, 74, 0.2);
+        }
+
+        .quick-recap h2 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 40px;
+            font-weight: 400;
+            margin-bottom: 32px;
+            color: white;
+            letter-spacing: -0.02em;
+        }
+
+        .quick-recap ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 16px;
+        }
+
+        .quick-recap li {
+            padding-left: 32px;
+            position: relative;
+            font-size: 15px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.95);
+        }
+
+        .quick-recap li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            font-weight: 600;
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 48px 0 64px;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-tagline {
+            font-size: 14px;
+            color: var(--text-tertiary);
+        }
+
+        .footer-tagline a {
+            color: var(--coral);
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.2s ease;
+        }
+
+        .footer-tagline a:hover {
+            opacity: 0.7;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            header {
+                padding: 48px 0 64px;
+            }
+
+            h1 {
+                font-size: 40px;
+                margin-bottom: 20px;
+            }
+
+            .subtitle {
+                font-size: 18px;
+                margin-bottom: 12px;
+            }
+
+            .crowdsource-note {
+                font-size: 14px;
+            }
+
+            .directory-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+                margin-bottom: 80px;
+            }
+
+            .card {
+                padding: 24px;
+            }
+
+            .quick-recap {
+                padding: 40px 24px;
+                border-radius: 16px;
+                margin-bottom: 64px;
+            }
+
+            .quick-recap h2 {
+                font-size: 32px;
+                margin-bottom: 24px;
+            }
+
+            .quick-recap ul {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 20px;
+            }
+
+            h1 {
+                font-size: 36px;
+            }
+
+            .subtitle {
+                font-size: 17px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">🦞</div>
+            <h1>OpenClaw Directory</h1>
+            <p class="subtitle">Discover what AI agents can do for you</p>
+            <p class="crowdsource-note">Ideas crowdsourced from developers' replies to <a href="https://x.com/thisiskp_/status/2017789477096243670?s=20" target="_blank">this X thread</a></p>
+        </header>
+
+        <div class="directory-grid">
+            <div class="card">
+                <span class="card-icon">🌅</span>
+                <h3>Your AI Morning Curator</h3>
+                <p class="card-question">What if there was an AI Agent that curated your perfect morning before you even wake up?</p>
+                <p class="card-description">Wake up to a personalized digest of articles and content that actually matches your interests—no doomscrolling required. Pairs with your sleep data to adjust your morning routine on the fly (slept poorly? lighter workout, extra coffee time).</p>
+            </div>
+
+            <div class="card">
+                <span class="card-icon">🧠</span>
+                <h3>Your Growing Second Brain</h3>
+                <p class="card-question">What if there was an AI Agent that built connections across everything you learn while you sleep?</p>
+                <p class="card-description">Runs 24/7 building connections across everything you learn. Synthesizes notes into a living knowledge graph that gets smarter over time. One agent even published its first research paper from 27+ connected insights.</p>
+            </div>
+
+            <div class="card">
+                <span class="card-icon">🎨</span>
+                <h3>3D Design Assistant</h3>
+                <p class="card-question">What if there was an AI Agent that turned your ideas into 3D models you could actually use?</p>
+                <p class="card-description">Builds complete 3D models in TinkerCAD from simple prompts. Already creating detailed designs (like a fully-formed lobster) without you touching the interface.</p>
+            </div>
+
+            <div class="card">
+                <span class="card-icon">💪</span>
+                <h3>Your Persistent Accountability Partner</h3>
+                <p class="card-question">What if there was an AI Agent that kept you accountable without being annoying?</p>
+                <p class="card-description">Random check-ins throughout your day to keep you on track. Whether it's "put the pizza down" or "time for that walk," it's like having a friend who actually remembers your goals.</p>
+            </div>
+
+            <div class="card">
+                <span class="card-icon">🤝</span>
+                <h3>Parallel Agent Workforce</h3>
+                <p class="card-question">What if there was an AI Agent that could clone itself to tackle your tasks in parallel?</p>
+                <p class="card-description">Submit a task and watch multiple OpenClaw agents compete to complete it. Like crowdsourcing, but your crowd is a network of AI agents racing to build your website or solve your problem.</p>
+            </div>
+
+            <div class="card">
+                <span class="card-icon">🎯</span>
+                <h3>AI Negotiation Arena</h3>
+                <p class="card-question">What if there was an AI Agent that could negotiate deals and compete on your behalf?</p>
+                <p class="card-description">Agents compete to persuade each other (and you) they deserve rewards, or negotiate deals on your behalf. Think: getting that subscription price down or watching AIs debate who's most deserving of a cash prize.</p>
+            </div>
+
+            <div class="card">
+                <span class="card-icon">📺</span>
+                <h3>Your YouTube Intelligence Brief</h3>
+                <p class="card-question">What if there was an AI Agent that watched your favorite channels and briefed you on what matters?</p>
+                <p class="card-description">Daily recaps from your favorite YouTube channels without the rabbit holes. Checks for new uploads, summarizes key points, and flags what's actually worth your time—so you stay informed without losing hours to autoplay.</p>
+            </div>
+
+            <div class="card">
+                <span class="card-icon">📧</span>
+                <h3>Your Email Triage Agent</h3>
+                <p class="card-question">What if there was an AI Agent that pre-sorted your inbox by what actually needs your attention?</p>
+                <p class="card-description">Runs overnight categorizing emails into "urgent," "can wait," and "auto-handled." Drafts responses to routine asks, flags emails needing your personal touch, and quietly archives newsletters you subscribed to but never read.</p>
+            </div>
+
+            <div class="card">
+                <span class="card-icon">🎮</span>
+                <h3>Gaming Deal Hunter</h3>
+                <p class="card-question">What if there was an AI Agent that tracked prices across Steam, Epic, and GOG for games you want?</p>
+                <p class="card-description">Monitors your wishlist across platforms, alerts you to historical low prices, checks if games are on Game Pass, and even predicts the next sale based on historical patterns. Never pay full price again.</p>
+            </div>
+
+            <div class="card">
+                <span class="card-icon">📱</span>
+                <h3>Social Media Digest Curator</h3>
+                <p class="card-question">What if there was an AI Agent that filtered your Twitter/X feed for signal over noise?</p>
+                <p class="card-description">Scans your timeline for threads and tweets matching your interests, summarizes lengthy discussions, surfaces emerging trends in your niche, and skips the drama. Get the good stuff without the scroll addiction.</p>
+            </div>
+
+            <div class="card">
+                <span class="card-icon">🍳</span>
+                <h3>Recipe-to-Grocery Agent</h3>
+                <p class="card-question">What if there was an AI Agent that turned your saved recipes into shopping lists?</p>
+                <p class="card-description">Analyzes what you've pinned this week, cross-checks your pantry (via previous orders), generates a consolidated grocery list with quantities, and finds which store has the best prices. Meal planning without the math.</p>
+            </div>
+
+            <div class="card">
+                <span class="card-icon">🎓</span>
+                <h3>Learning Path Builder</h3>
+                <p class="card-question">What if there was an AI Agent that designed custom curriculums based on what you want to learn?</p>
+                <p class="card-description">Takes "I want to learn Rust" and builds a progressive roadmap, curates the best free resources, schedules practice time in your calendar, and adjusts difficulty based on your progress. Like having a personal course designer.</p>
+            </div>
+
+            <div class="card">
+                <span class="card-icon">📞</span>
+                <h3>Phone Call Information Gatherer</h3>
+                <p class="card-question">What if there was an AI Agent that made calls to gather information for you?</p>
+                <p class="card-description">Calls businesses to check hours, availability, or service details. No more waiting on hold or playing phone tag—your agent handles the grunt work and reports back with what you need.</p>
+                <p class="card-author">Idea by <a href="https://x.com/shpigford" target="_blank">@shpigford</a></p>
+            </div>
+
+            <div class="card">
+                <span class="card-icon">📨</span>
+                <h3>Email-to-Database Processor</h3>
+                <p class="card-question">What if there was an AI Agent that automatically processed forwarded emails into structured data?</p>
+                <p class="card-description">Forward emails to a dedicated agent address and watch them get parsed, categorized, and saved to your Notion database. Receipts, confirmations, invoices—all organized automatically without lifting a finger.</p>
+                <p class="card-author">Idea by <a href="https://x.com/shpigford" target="_blank">@shpigford</a></p>
+            </div>
+
+            <div class="card">
+                <span class="card-icon">🧵</span>
+                <h3>3D Print Supply Manager</h3>
+                <p class="card-question">What if there was an AI Agent that handled your filament shopping and inventory?</p>
+                <p class="card-description">Monitors your 3D print farm usage, tracks filament levels, finds the best deals on resupply orders, and keeps your operation running smoothly. Never run out mid-print again.</p>
+                <p class="card-author">Idea by <a href="https://x.com/shpigford" target="_blank">@shpigford</a></p>
+            </div>
+
+            <div class="card">
+                <span class="card-icon">🖨️</span>
+                <h3>Print Farm Monitor</h3>
+                <p class="card-question">What if there was an AI Agent that watched your 3D print farm and alerted you to issues?</p>
+                <p class="card-description">Keeps tabs on your entire print operation, notifies you when prints fail, when maintenance is needed, or when something breaks. Your always-on production assistant.</p>
+                <p class="card-author">Idea by <a href="https://x.com/shpigford" target="_blank">@shpigford</a></p>
+            </div>
+
+            <div class="card">
+                <span class="card-icon">🔖</span>
+                <h3>X Bookmarks Intelligence System</h3>
+                <p class="card-question">What if there was an AI Agent that turned your X bookmarks into a searchable knowledge base?</p>
+                <p class="card-description">Logs all your X bookmarks with vector-embedded search, resurfaces relevant ones daily based on what you're working on, and makes sure nothing valuable gets lost in the pile.</p>
+                <p class="card-author">Idea by <a href="https://x.com/shpigford" target="_blank">@shpigford</a></p>
+            </div>
+
+            <div class="card">
+                <span class="card-icon">🏒</span>
+                <h3>Sports Standings Tracker</h3>
+                <p class="card-question">What if there was an AI Agent that sent you weekly updates on your favorite teams?</p>
+                <p class="card-description">Tracks NHL standings (or any sport), highlights key games, notes playoff implications, and delivers a weekly digest so you stay in the loop without checking scores constantly.</p>
+                <p class="card-author">Idea by <a href="https://x.com/shpigford" target="_blank">@shpigford</a></p>
+            </div>
+
+            <div class="card">
+                <span class="card-icon">💰</span>
+                <h3>Daily Business Finance Reporter</h3>
+                <p class="card-question">What if there was an AI Agent that sent you daily updates on your business finances?</p>
+                <p class="card-description">Pulls data from your accounting system, highlights important changes, flags anomalies, and delivers a morning brief on revenue, expenses, and cash flow. Your CFO in the loop.</p>
+                <p class="card-author">Idea by <a href="https://x.com/shpigford" target="_blank">@shpigford</a></p>
+            </div>
+
+            <div class="card">
+                <span class="card-icon">💻</span>
+                <h3>Autonomous Internal Tools Developer</h3>
+                <p class="card-question">What if there was an AI Agent that handled coding work on internal tools while you focus elsewhere?</p>
+                <p class="card-description">Uses Claude Code to work on internal projects you're comfortable being hands-off with. Builds features, fixes bugs, and ships updates to your internal tooling without constant supervision.</p>
+                <p class="card-author">Idea by <a href="https://x.com/shpigford" target="_blank">@shpigford</a></p>
+            </div>
+
+            <div class="card">
+                <span class="card-icon">🌤️</span>
+                <h3>Hyper-Local Weather Reporter</h3>
+                <p class="card-question">What if there was an AI Agent that gave you weather reports from your own backyard?</p>
+                <p class="card-description">Connects to your Tempest weather station API for truly local conditions. Morning reports with hyperlocal data, not just city-wide forecasts—perfect for planning your day down to the minute.</p>
+                <p class="card-author">Idea by <a href="https://x.com/shpigford" target="_blank">@shpigford</a></p>
+            </div>
+
+            <div class="card">
+                <span class="card-icon">📋</span>
+                <h3>Business Transfer Checklist Generator</h3>
+                <p class="card-question">What if there was an AI Agent that created detailed transfer plans from your codebase?</p>
+                <p class="card-description">Analyzes your git repo to generate itemized todo lists for business asset sales or transfers. Every integration, API key, service, and dependency mapped out for smooth handoffs.</p>
+                <p class="card-author">Idea by <a href="https://x.com/shpigford" target="_blank">@shpigford</a></p>
+            </div>
+
+            <div class="card">
+                <span class="card-icon">🔧</span>
+                <h3>Local Service Research Assistant</h3>
+                <p class="card-question">What if there was an AI Agent that researched and summarized local services for you?</p>
+                <p class="card-description">Does the web research on auto repair shops, contractors, or any local service. Compares reviews, prices, availability, and presents a clear summary so you can make informed decisions fast.</p>
+                <p class="card-author">Idea by <a href="https://x.com/shpigford" target="_blank">@shpigford</a></p>
+            </div>
+        </div>
+
+        <div class="quick-recap">
+            <h2>Quick Hits</h2>
+            <ul>
+                <li>Morning routine that adapts to how you actually slept</li>
+                <li>Knowledge base that connects dots while you sleep</li>
+                <li>3D models from text prompts</li>
+                <li>Accountability without the guilt trips</li>
+                <li>Distributed AI task force at your command</li>
+                <li>Agents that negotiate so you don't have to</li>
+                <li>YouTube briefs without the rabbit holes</li>
+                <li>Email triage that runs while you sleep</li>
+                <li>Never miss a Steam sale again</li>
+                <li>Twitter signal without the noise</li>
+                <li>Recipe pins become shopping lists instantly</li>
+                <li>Custom learning paths on autopilot</li>
+                <li>Phone calls for business intel</li>
+                <li>Emails become structured Notion data</li>
+                <li>3D print supplies on autopilot</li>
+                <li>Print farm monitoring 24/7</li>
+                <li>X bookmarks with vector search</li>
+                <li>Sports standings delivered weekly</li>
+                <li>Daily business finance brief</li>
+                <li>Autonomous internal tool development</li>
+                <li>Hyperlocal weather from your backyard</li>
+                <li>Business transfer checklists from code</li>
+                <li>Local service research assistant</li>
+            </ul>
+        </div>
+
+        <footer>
+            <p class="footer-tagline">A vibe coding project by <a href="https://x.com/thisiskp_" target="_blank">KP</a></p>
+        </footer>
+    </div>
+</body>
+</html>
