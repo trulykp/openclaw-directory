@@ -15,14 +15,17 @@
         }
 
         :root {
-            --coral: #FF6B4A;
-            --coral-light: #FF8B6F;
-            --sand: #FFF8F0;
-            --sand-dark: #F5EDE0;
+            --coral: #B85C3E;
+            --coral-light: #C86B4E;
+            --coral-cta: #FF6B4A;
+            --coral-cta-hover: #FF7E60;
+            --sand: #FAF4EB;
+            --sand-dark: #EFE7DA;
             --text-primary: #1A1A1A;
-            --text-secondary: #666666;
-            --text-tertiary: #999999;
-            --border: #E8E0D5;
+            --text-secondary: #5A554E;
+            --text-tertiary: #8A857E;
+            --border: #E5DDD2;
+            --shadow-warm: 160, 110, 70;
         }
 
         body {
@@ -44,6 +47,7 @@
         header {
             padding: 80px 0 96px;
             text-align: center;
+            background: radial-gradient(ellipse at 50% 20%, rgba(200, 160, 120, 0.12) 0%, transparent 70%);
         }
 
         .logo {
@@ -100,7 +104,7 @@
         .submit-btn {
             margin-top: 32px;
             padding: 14px 32px;
-            background: var(--coral);
+            background: var(--coral-cta);
             color: white;
             border: none;
             border-radius: 8px;
@@ -112,9 +116,9 @@
         }
 
         .submit-btn:hover {
-            background: var(--coral-light);
+            background: var(--coral-cta-hover);
             transform: translateY(-2px);
-            box-shadow: 0 8px 16px rgba(255, 107, 74, 0.3);
+            box-shadow: 0 8px 24px rgba(255, 107, 74, 0.25);
         }
 
         /* Modal Styles */
@@ -257,9 +261,11 @@
         }
 
         .preview-card .preview-question {
-            color: var(--coral);
-            font-weight: 600;
-            font-size: 14px;
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+            color: var(--text-secondary);
+            font-weight: 400;
+            font-size: 15px;
             margin-bottom: 12px;
         }
 
@@ -286,7 +292,7 @@
         .btn-primary {
             flex: 1;
             padding: 14px 24px;
-            background: var(--coral);
+            background: var(--coral-cta);
             color: white;
             border: none;
             border-radius: 8px;
@@ -298,7 +304,7 @@
         }
 
         .btn-primary:hover {
-            background: var(--coral-light);
+            background: var(--coral-cta-hover);
         }
 
         .btn-primary:disabled {
@@ -358,14 +364,21 @@
             border-radius: 16px;
             padding: 32px;
             border: 1px solid var(--border);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-top: 4px solid var(--border);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
+            box-shadow: 0 2px 8px rgba(var(--shadow-warm), 0.05);
         }
 
+        .card:nth-child(5n+1) { border-top-color: #B85C42; }
+        .card:nth-child(5n+2) { border-top-color: #BF903E; }
+        .card:nth-child(5n+3) { border-top-color: #6D8B6D; }
+        .card:nth-child(5n+4) { border-top-color: #528B95; }
+        .card:nth-child(5n+5) { border-top-color: #8B6D80; }
+
         .card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-            border-color: var(--coral);
+            transform: scale(1.015);
+            box-shadow: 0 16px 40px rgba(var(--shadow-warm), 0.12);
         }
 
         .card-icon {
@@ -385,9 +398,11 @@
         }
 
         .card-question {
-            font-size: 15px;
-            color: var(--coral);
-            font-weight: 600;
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+            font-size: 16px;
+            color: var(--text-secondary);
+            font-weight: 400;
             margin-bottom: 16px;
             line-height: 1.5;
         }
@@ -424,7 +439,7 @@
             border-radius: 24px;
             padding: 64px;
             margin-bottom: 80px;
-            box-shadow: 0 20px 60px rgba(255, 107, 74, 0.2);
+            box-shadow: 0 20px 60px rgba(var(--shadow-warm), 0.2);
         }
 
         .quick-recap h2 {
