@@ -43,23 +43,68 @@
             padding: 0 24px;
         }
 
+        /* Navigation */
+        .site-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .site-nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .site-nav-logo .logo-icon {
+            font-size: 28px;
+        }
+
+        .site-nav-logo .logo-text {
+            font-family: 'Instrument Serif', serif;
+            font-size: 24px;
+            font-weight: 400;
+            letter-spacing: -0.02em;
+        }
+
+        .site-nav-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .site-nav-links a {
+            padding: 8px 20px;
+            border-radius: 100px;
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+            color: var(--text-secondary);
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+        }
+
+        .site-nav-links a:hover {
+            color: var(--coral);
+            background: white;
+            border-color: var(--border);
+        }
+
+        .site-nav-links a.active {
+            background: var(--coral-cta);
+            color: white;
+            border-color: var(--coral-cta);
+        }
+
         /* Header */
         header {
-            padding: 80px 0 96px;
+            padding: 64px 0 80px;
             text-align: center;
             background: radial-gradient(ellipse at 50% 20%, rgba(200, 160, 120, 0.12) 0%, transparent 70%);
-        }
-
-        .logo {
-            font-size: 56px;
-            margin-bottom: 24px;
-            display: inline-block;
-            animation: float 4s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-8px) rotate(2deg); }
         }
 
         h1 {
@@ -499,8 +544,14 @@
 
         /* Mobile Responsive */
         @media (max-width: 768px) {
+            .site-nav {
+                flex-direction: column;
+                gap: 16px;
+                padding: 16px 0;
+            }
+
             header {
-                padding: 48px 0 64px;
+                padding: 40px 0 56px;
             }
 
             h1 {
@@ -575,6 +626,15 @@
                 padding: 0 20px;
             }
 
+            .site-nav-links {
+                gap: 4px;
+            }
+
+            .site-nav-links a {
+                padding: 8px 14px;
+                font-size: 13px;
+            }
+
             h1 {
                 font-size: 36px;
             }
@@ -587,8 +647,21 @@
 </head>
 <body>
     <div class="container">
+        <nav class="site-nav">
+            <a href="index.html" class="site-nav-logo">
+                <span class="logo-icon">🦞</span>
+                <span class="logo-text">Clawverse</span>
+            </a>
+            <div class="site-nav-links">
+                <a href="index.html" class="active">Use Cases</a>
+                <a href="tools.html">Tools</a>
+                <a href="about.html">About</a>
+            </div>
+        </nav>
+    </div>
+
+    <div class="container">
         <header>
-            <div class="logo">🦞</div>
             <h1>Clawverse</h1>
             <p class="subtitle">A directory of what AI agents can do for you</p>
             <p class="crowdsource-note">Ideas crowdsourced from developers building with OpenClaw — <a href="https://x.com/thisiskp_/status/2017789477096243670?s=20" target="_blank">join the conversation</a></p>
