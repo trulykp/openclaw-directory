@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Clawverse</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --coral: #B85C3E;
+            --coral-light: #C86B4E;
+            --coral-cta: #FF6B4A;
+            --coral-cta-hover: #FF7E60;
+            --sand: #FAF4EB;
+            --sand-dark: #EFE7DA;
+            --text-primary: #1A1A1A;
+            --text-secondary: #5A554E;
+            --text-tertiary: #8A857E;
+            --border: #E5DDD2;
+            --shadow-warm: 160, 110, 70;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--sand);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Navigation */
+        .site-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .site-nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .site-nav-logo .logo-icon {
+            font-size: 28px;
+        }
+
+        .site-nav-logo .logo-text {
+            font-family: 'Instrument Serif', serif;
+            font-size: 24px;
+            font-weight: 400;
+            letter-spacing: -0.02em;
+        }
+
+        .site-nav-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .site-nav-links a {
+            padding: 8px 20px;
+            border-radius: 100px;
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+            color: var(--text-secondary);
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+        }
+
+        .site-nav-links a:hover {
+            color: var(--coral);
+            background: white;
+            border-color: var(--border);
+        }
+
+        .site-nav-links a.active {
+            background: var(--coral-cta);
+            color: white;
+            border-color: var(--coral-cta);
+        }
+
+        /* About Content */
+        .about-hero {
+            padding: 80px 0 64px;
+            text-align: center;
+            background: radial-gradient(ellipse at 50% 20%, rgba(200, 160, 120, 0.12) 0%, transparent 70%);
+        }
+
+        .about-hero h1 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 56px;
+            font-weight: 400;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+
+        .about-hero .subtitle {
+            font-size: 20px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .about-content {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 64px 0 96px;
+        }
+
+        .about-section {
+            margin-bottom: 48px;
+        }
+
+        .about-section h2 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 32px;
+            font-weight: 400;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .about-section p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .about-section a {
+            color: var(--coral);
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s ease;
+        }
+
+        .about-section a:hover {
+            border-bottom-color: var(--coral);
+        }
+
+        .built-by-card {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            border: 1px solid var(--border);
+            box-shadow: 0 2px 8px rgba(var(--shadow-warm), 0.05);
+            text-align: center;
+        }
+
+        .built-by-card .emoji-badge {
+            font-size: 48px;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .built-by-card h3 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 24px;
+            font-weight: 400;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .built-by-card p {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 0;
+        }
+
+        .built-by-card a {
+            color: var(--coral);
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s ease;
+        }
+
+        .built-by-card a:hover {
+            border-bottom-color: var(--coral);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 48px 0 64px;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-tagline {
+            font-size: 14px;
+            color: var(--text-tertiary);
+        }
+
+        .footer-tagline a {
+            color: var(--coral);
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.2s ease;
+        }
+
+        .footer-tagline a:hover {
+            opacity: 0.7;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .site-nav {
+                flex-direction: column;
+                gap: 16px;
+                padding: 16px 0;
+            }
+
+            .about-hero {
+                padding: 48px 0 40px;
+            }
+
+            .about-hero h1 {
+                font-size: 40px;
+            }
+
+            .about-hero .subtitle {
+                font-size: 17px;
+            }
+
+            .about-content {
+                padding: 40px 0 64px;
+            }
+
+            .about-section h2 {
+                font-size: 28px;
+            }
+
+            .built-by-card {
+                padding: 32px 24px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 20px;
+            }
+
+            .site-nav-links {
+                gap: 4px;
+            }
+
+            .site-nav-links a {
+                padding: 8px 14px;
+                font-size: 13px;
+            }
+
+            .about-hero h1 {
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="site-nav">
+            <a href="index.html" class="site-nav-logo">
+                <span class="logo-icon">🦞</span>
+                <span class="logo-text">Clawverse</span>
+            </a>
+            <div class="site-nav-links">
+                <a href="index.html">Use Cases</a>
+                <a href="tools.html">Tools</a>
+                <a href="about.html" class="active">About</a>
+            </div>
+        </nav>
+    </div>
+
+    <div class="container">
+        <div class="about-hero">
+            <h1>About Clawverse</h1>
+            <p class="subtitle">A community-powered directory of what AI agents can do</p>
+        </div>
+
+        <div class="about-content">
+            <div class="about-section">
+                <h2>What is Clawverse?</h2>
+                <p>Clawverse is a curated directory of real AI agent use cases and the tools to build them, crowdsourced from developers and makers building with OpenClaw. It started from a simple question on X: <em>"What would you build with an AI agent?"</em> — and the community delivered.</p>
+                <p>The <a href="index.html">Use Cases</a> page showcases creative ideas people have submitted — from morning routine curators to autonomous internal tool developers. The <a href="tools.html">Tools</a> page catalogs the best ways to set up and host OpenClaw, from one-click managed hosting to self-hosted VPS options.</p>
+            </div>
+
+            <div class="about-section">
+                <h2>How it works</h2>
+                <p>Ideas are collected from community conversations on X, along with direct submissions through the site. Each use case and tool is verified and added to the directory with proper attribution to the person who shared it.</p>
+            </div>
+
+            <div class="about-section">
+                <div class="built-by-card">
+                    <span class="emoji-badge">🦞</span>
+                    <h3>Built by KP</h3>
+                    <p>This site is built by <a href="https://x.com/thisiskp_" target="_blank">KP</a>, Head of Community at Netlify. Vibe coded with Claude and hosted on Netlify.</p>
+                    <p style="margin-top: 12px;">
+                        <a href="https://x.com/thisiskp_" target="_blank">@thisiskp_</a> on X
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p class="footer-tagline">Vibe coded by <a href="https://x.com/thisiskp_" target="_blank">KP</a> featuring Claude and Netlify</p>
+        </footer>
+    </div>
+</body>
+</html>

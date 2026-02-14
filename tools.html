@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clawverse Tools - The Best Ways to Set Up OpenClaw</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --coral: #B85C3E;
+            --coral-light: #C86B4E;
+            --coral-cta: #FF6B4A;
+            --coral-cta-hover: #FF7E60;
+            --sand: #FAF4EB;
+            --sand-dark: #EFE7DA;
+            --text-primary: #1A1A1A;
+            --text-secondary: #5A554E;
+            --text-tertiary: #8A857E;
+            --border: #E5DDD2;
+            --shadow-warm: 160, 110, 70;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--sand);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Navigation */
+        .site-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .site-nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .site-nav-logo .logo-icon {
+            font-size: 28px;
+        }
+
+        .site-nav-logo .logo-text {
+            font-family: 'Instrument Serif', serif;
+            font-size: 24px;
+            font-weight: 400;
+            letter-spacing: -0.02em;
+        }
+
+        .site-nav-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .site-nav-links a {
+            padding: 8px 20px;
+            border-radius: 100px;
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+            color: var(--text-secondary);
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+        }
+
+        .site-nav-links a:hover {
+            color: var(--coral);
+            background: white;
+            border-color: var(--border);
+        }
+
+        .site-nav-links a.active {
+            background: var(--coral-cta);
+            color: white;
+            border-color: var(--coral-cta);
+        }
+
+        /* Header */
+        header {
+            padding: 64px 0 48px;
+            text-align: center;
+            background: radial-gradient(ellipse at 50% 20%, rgba(200, 160, 120, 0.12) 0%, transparent 70%);
+        }
+
+        h1 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 56px;
+            font-weight: 400;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+
+        h1 .accent {
+            color: var(--coral);
+            font-style: italic;
+        }
+
+        .subtitle {
+            font-size: 20px;
+            color: var(--text-secondary);
+            margin-bottom: 0;
+            font-weight: 400;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Filter Bar */
+        .filter-bar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 24px 0 48px;
+        }
+
+        .filter-btn {
+            padding: 10px 22px;
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            background: white;
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: 'Inter', sans-serif;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--coral);
+            color: var(--coral);
+        }
+
+        .filter-btn.active {
+            background: var(--text-primary);
+            color: white;
+            border-color: var(--text-primary);
+        }
+
+        .filter-btn .count {
+            font-size: 12px;
+            font-weight: 600;
+            opacity: 0.6;
+        }
+
+        /* Tool Cards */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 24px;
+            margin-bottom: 80px;
+        }
+
+        .tool-card {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            border: 1px solid var(--border);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            box-shadow: 0 2px 8px rgba(var(--shadow-warm), 0.05);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tool-card.hidden {
+            display: none;
+        }
+
+        .tool-card:hover {
+            transform: scale(1.015);
+            box-shadow: 0 16px 40px rgba(var(--shadow-warm), 0.12);
+        }
+
+        .tool-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+
+        .tool-card-icon {
+            font-size: 32px;
+            display: block;
+        }
+
+        .tool-card-badge {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            padding: 4px 10px;
+            border-radius: 100px;
+        }
+
+        .tool-card-badge.managed {
+            background: #FFF0EC;
+            color: var(--coral);
+        }
+
+        .tool-card-badge.vps {
+            background: #ECF4EC;
+            color: #4A7A4A;
+        }
+
+        .tool-card-badge.oss {
+            background: #ECF0F8;
+            color: #4A6A8A;
+        }
+
+        .tool-card h3 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 22px;
+            font-weight: 400;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            line-height: 1.3;
+            letter-spacing: -0.01em;
+        }
+
+        .tool-card-price {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--coral);
+            margin-bottom: 16px;
+        }
+
+        .tool-card-description {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 0;
+            flex: 1;
+        }
+
+        .tool-card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+            font-size: 13px;
+            color: var(--text-tertiary);
+        }
+
+        .tool-card-footer a {
+            color: var(--coral);
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.2s ease;
+        }
+
+        .tool-card-footer a:hover {
+            opacity: 0.7;
+        }
+
+        .tool-card-footer .visit-link {
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* Quick Recap */
+        .quick-recap {
+            background: linear-gradient(135deg, var(--coral) 0%, var(--coral-light) 100%);
+            border-radius: 24px;
+            padding: 64px;
+            margin-bottom: 80px;
+            box-shadow: 0 20px 60px rgba(var(--shadow-warm), 0.2);
+        }
+
+        .quick-recap h2 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 40px;
+            font-weight: 400;
+            margin-bottom: 32px;
+            color: white;
+            letter-spacing: -0.02em;
+        }
+
+        .quick-recap ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 16px;
+        }
+
+        .quick-recap li {
+            padding-left: 32px;
+            position: relative;
+            font-size: 15px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.95);
+        }
+
+        .quick-recap li::before {
+            content: '\1F99E';
+            position: absolute;
+            left: 0;
+            font-size: 14px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 48px 0 64px;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-tagline {
+            font-size: 14px;
+            color: var(--text-tertiary);
+        }
+
+        .footer-tagline a {
+            color: var(--coral);
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.2s ease;
+        }
+
+        .footer-tagline a:hover {
+            opacity: 0.7;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .site-nav {
+                flex-direction: column;
+                gap: 16px;
+                padding: 16px 0;
+            }
+
+            header {
+                padding: 40px 0 32px;
+            }
+
+            h1 {
+                font-size: 40px;
+                margin-bottom: 12px;
+            }
+
+            .subtitle {
+                font-size: 17px;
+            }
+
+            .filter-bar {
+                flex-wrap: wrap;
+                gap: 8px;
+                padding: 16px 0 32px;
+            }
+
+            .filter-btn {
+                padding: 8px 16px;
+                font-size: 13px;
+            }
+
+            .tools-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+                margin-bottom: 56px;
+            }
+
+            .tool-card {
+                padding: 24px;
+            }
+
+            .quick-recap {
+                padding: 40px 24px;
+                border-radius: 16px;
+                margin-bottom: 64px;
+            }
+
+            .quick-recap h2 {
+                font-size: 32px;
+                margin-bottom: 24px;
+            }
+
+            .quick-recap ul {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 20px;
+            }
+
+            .site-nav-links {
+                gap: 4px;
+            }
+
+            .site-nav-links a {
+                padding: 8px 14px;
+                font-size: 13px;
+            }
+
+            h1 {
+                font-size: 36px;
+            }
+
+            .subtitle {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="site-nav">
+            <a href="index.html" class="site-nav-logo">
+                <span class="logo-icon">🦞</span>
+                <span class="logo-text">Clawverse</span>
+            </a>
+            <div class="site-nav-links">
+                <a href="index.html">Use Cases</a>
+                <a href="tools.html" class="active">Tools</a>
+                <a href="about.html">About</a>
+            </div>
+        </nav>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>Clawverse <span class="accent">Tools</span></h1>
+            <p class="subtitle">The best ways to set up OpenClaw — crowdsourced from the community</p>
+        </header>
+
+        <!-- Filter Bar -->
+        <div class="filter-bar">
+            <button class="filter-btn active" data-filter="all" onclick="filterTools('all', this)">All <span class="count">18</span></button>
+            <button class="filter-btn" data-filter="managed" onclick="filterTools('managed', this)">Managed <span class="count">9</span></button>
+            <button class="filter-btn" data-filter="vps" onclick="filterTools('vps', this)">VPS / Self-Hosted <span class="count">8</span></button>
+            <button class="filter-btn" data-filter="oss" onclick="filterTools('oss', this)">Dev Tools <span class="count">1</span></button>
+        </div>
+
+        <!-- All Tools in One Grid -->
+        <div class="tools-grid">
+            <!-- Managed Hosting -->
+            <div class="tool-card" data-category="managed">
+                <div class="tool-card-header">
+                    <span class="tool-card-icon">🌊</span>
+                    <span class="tool-card-badge managed">Managed</span>
+                </div>
+                <h3>Seafloor</h3>
+                <p class="tool-card-price">Free to start</p>
+                <p class="tool-card-description">Hosted OpenClaw on the web with zero setup. Try it in your browser before committing to anything. The fastest path from curious to running.</p>
+                <div class="tool-card-footer">
+                    <span>via <a href="https://x.com/adamludwin" target="_blank">@adamludwin</a></span>
+                    <a href="https://seafloor.bot" target="_blank" class="visit-link">Visit &rarr;</a>
+                </div>
+            </div>
+
+            <div class="tool-card" data-category="managed">
+                <div class="tool-card-header">
+                    <span class="tool-card-icon">🚜</span>
+                    <span class="tool-card-badge managed">Managed</span>
+                </div>
+                <h3>Tiller</h3>
+                <p class="tool-card-price">From &euro;3/mo</p>
+                <p class="tool-card-description">Managed OpenClaw hosting on isolated infrastructure. Secure, affordable, and zero terminal knowledge required. The budget-friendly managed option.</p>
+                <div class="tool-card-footer">
+                    <span>via <a href="https://x.com/mischamartijn" target="_blank">@mischamartijn</a></span>
+                    <a href="https://tiller.sh" target="_blank" class="visit-link">Visit &rarr;</a>
+                </div>
+            </div>
+
+            <div class="tool-card" data-category="managed">
+                <div class="tool-card-header">
+                    <span class="tool-card-icon">&#9889;</span>
+                    <span class="tool-card-badge managed">Managed</span>
+                </div>
+                <h3>Emergent</h3>
+                <p class="tool-card-price">Free to start</p>
+                <p class="tool-card-description">One-click setup that provisions your agent runtime in about 5 minutes. Supplies its own LLM keys by default — no API accounts needed to get started.</p>
+                <div class="tool-card-footer">
+                    <span>via <a href="https://x.com/aswin_db" target="_blank">@aswin_db</a></span>
+                    <a href="https://emergent.sh" target="_blank" class="visit-link">Visit &rarr;</a>
+                </div>
+            </div>
+
+            <div class="tool-card" data-category="managed">
+                <div class="tool-card-header">
+                    <span class="tool-card-icon">&#9992;&#65039;</span>
+                    <span class="tool-card-badge managed">Managed</span>
+                </div>
+                <h3>ClawPlane</h3>
+                <p class="tool-card-price">Check site for pricing</p>
+                <p class="tool-card-description">Deploy OpenClaw with Telegram and Gmail in under 1 minute. No SSH, no terminal, no Docker. Sign in and deploy — that's it.</p>
+                <div class="tool-card-footer">
+                    <span>via <a href="https://x.com/playwhatai" target="_blank">@playwhatai</a></span>
+                    <a href="https://www.clawplane.com" target="_blank" class="visit-link">Visit &rarr;</a>
+                </div>
+            </div>
+
+            <div class="tool-card" data-category="managed">
+                <div class="tool-card-header">
+                    <span class="tool-card-icon">📊</span>
+                    <span class="tool-card-badge managed">Managed</span>
+                </div>
+                <h3>ClawDash</h3>
+                <p class="tool-card-price">$29/mo with coupon</p>
+                <p class="tool-card-description">Two minutes and done. A managed dashboard for your OpenClaw instance with a straightforward setup flow.</p>
+                <div class="tool-card-footer">
+                    <span>via <a href="https://x.com/bartbuilder" target="_blank">@bartbuilder</a></span>
+                    <a href="https://clawdash.io/en" target="_blank" class="visit-link">Visit &rarr;</a>
+                </div>
+            </div>
+
+            <div class="tool-card" data-category="managed">
+                <div class="tool-card-header">
+                    <span class="tool-card-icon">🎯</span>
+                    <span class="tool-card-badge managed">Managed</span>
+                </div>
+                <h3>EasyClaw</h3>
+                <p class="tool-card-price">Check site for pricing</p>
+                <p class="tool-card-description">Claims to get your OpenClaw instance up and running in under a minute. Built for speed and simplicity.</p>
+                <div class="tool-card-footer">
+                    <span>via <a href="https://x.com/HarishKotra" target="_blank">@HarishKotra</a></span>
+                    <a href="https://easyclaw.in" target="_blank" class="visit-link">Visit &rarr;</a>
+                </div>
+            </div>
+
+            <div class="tool-card" data-category="managed">
+                <div class="tool-card-header">
+                    <span class="tool-card-icon">🐼</span>
+                    <span class="tool-card-badge managed">Managed</span>
+                </div>
+                <h3>Panda-Bots</h3>
+                <p class="tool-card-price">Check site for pricing</p>
+                <p class="tool-card-description">One-click setup for a team of OpenClaw agents. Not just one bot — deploy a whole squad.</p>
+                <div class="tool-card-footer">
+                    <span>via <a href="https://x.com/kamalkannan" target="_blank">@kamalkannan</a></span>
+                    <a href="https://panda-bots.com" target="_blank" class="visit-link">Visit &rarr;</a>
+                </div>
+            </div>
+
+            <div class="tool-card" data-category="managed">
+                <div class="tool-card-header">
+                    <span class="tool-card-icon">💬</span>
+                    <span class="tool-card-badge managed">Managed</span>
+                </div>
+                <h3>Moltbot Online</h3>
+                <p class="tool-card-price">Under $30/mo</p>
+                <p class="tool-card-description">Deploy your own AI assistant to WhatsApp, Telegram, and Discord in under 5 minutes. Private machine, easy setup.</p>
+                <div class="tool-card-footer">
+                    <span>via <a href="https://x.com/Manam_19" target="_blank">@Manam_19</a></span>
+                    <a href="https://moltbot-online.com" target="_blank" class="visit-link">Visit &rarr;</a>
+                </div>
+            </div>
+
+            <div class="tool-card" data-category="managed">
+                <div class="tool-card-header">
+                    <span class="tool-card-icon">🔒</span>
+                    <span class="tool-card-badge managed">Managed</span>
+                </div>
+                <h3>getclaw.sh</h3>
+                <p class="tool-card-price">$10/mo</p>
+                <p class="tool-card-description">Deploys OpenClaw in secure, isolated environments on Cloudflare. Privacy-first with solid infrastructure backing.</p>
+                <div class="tool-card-footer">
+                    <span>via <a href="https://x.com/eth_chainId" target="_blank">@eth_chainId</a></span>
+                    <a href="https://getclaw.sh" target="_blank" class="visit-link">Visit &rarr;</a>
+                </div>
+            </div>
+
+            <!-- VPS & Self-Hosted -->
+            <div class="tool-card" data-category="vps">
+                <div class="tool-card-header">
+                    <span class="tool-card-icon">🏠</span>
+                    <span class="tool-card-badge vps">VPS</span>
+                </div>
+                <h3>Hostinger VPS</h3>
+                <p class="tool-card-price">~$6&ndash;20/mo</p>
+                <p class="tool-card-description">Pre-configured Docker template for OpenClaw. One of the most popular options in the community — multiple people recommended it. Buy AI credits directly through the panel.</p>
+                <div class="tool-card-footer">
+                    <span>via <a href="https://x.com/spredhedge" target="_blank">@spredhedge</a>, <a href="https://x.com/vinos25" target="_blank">@vinos25</a>, <a href="https://x.com/fizikiukas" target="_blank">@fizikiukas</a>, <a href="https://x.com/parthi_logan" target="_blank">@parthi_logan</a></span>
+                    <a href="https://www.hostinger.com/vps/docker/openclaw" target="_blank" class="visit-link">Visit &rarr;</a>
+                </div>
+            </div>
+
+            <div class="tool-card" data-category="vps">
+                <div class="tool-card-header">
+                    <span class="tool-card-icon">&#10052;&#65039;</span>
+                    <span class="tool-card-badge vps">VPS</span>
+                </div>
+                <h3>Coolify</h3>
+                <p class="tool-card-price">Under $30/mo</p>
+                <p class="tool-card-description">The smoothest non-dev VPS option for self-hosting. Coolify gives you a Heroku-like UI on top of a cheap Hetzner box. Start with Docker Compose + daily backups.</p>
+                <div class="tool-card-footer">
+                    <span>via <a href="https://x.com/ledger_eth" target="_blank">@ledger_eth</a></span>
+                    <a href="https://coolify.io" target="_blank" class="visit-link">Visit &rarr;</a>
+                </div>
+            </div>
+
+            <div class="tool-card" data-category="vps">
+                <div class="tool-card-header">
+                    <span class="tool-card-icon">🌀</span>
+                    <span class="tool-card-badge vps">VPS</span>
+                </div>
+                <h3>DigitalOcean</h3>
+                <p class="tool-card-price">~$5+/mo</p>
+                <p class="tool-card-description">Pre-configured 1-Click Application in the Droplet Marketplace. Includes hardened firewall rules, non-root execution, and Docker isolation out of the box.</p>
+                <div class="tool-card-footer">
+                    <span>via <a href="https://x.com/scottev" target="_blank">@scottev</a></span>
+                    <a href="https://www.digitalocean.com/community/tutorials/how-to-run-openclaw" target="_blank" class="visit-link">Visit &rarr;</a>
+                </div>
+            </div>
+
+            <div class="tool-card" data-category="vps">
+                <div class="tool-card-header">
+                    <span class="tool-card-icon">&#9729;&#65039;</span>
+                    <span class="tool-card-badge vps">VPS</span>
+                </div>
+                <h3>Oracle Cloud Free Tier</h3>
+                <p class="tool-card-price">~$6/mo (or free!)</p>
+                <p class="tool-card-description">Ubuntu + OpenClaw on Oracle's free ARM tier. 4 CPUs, 24GB RAM for $0. The most generous free compute for running your own agent.</p>
+                <div class="tool-card-footer">
+                    <span>via <a href="https://x.com/king_tyran96728" target="_blank">@king_tyran96728</a></span>
+                    <a href="https://cloud.oracle.com" target="_blank" class="visit-link">Visit &rarr;</a>
+                </div>
+            </div>
+
+            <div class="tool-card" data-category="vps">
+                <div class="tool-card-header">
+                    <span class="tool-card-icon">📦</span>
+                    <span class="tool-card-badge vps">VPS</span>
+                </div>
+                <h3>Contabo</h3>
+                <p class="tool-card-price">Varies</p>
+                <p class="tool-card-description">Dedicated OpenClaw VPS hosting page with a simple installation procedure. Full control, total privacy, and they've built specific OpenClaw support.</p>
+                <div class="tool-card-footer">
+                    <span>via <a href="https://x.com/SpriteForge" target="_blank">@SpriteForge</a></span>
+                    <a href="https://contabo.com/en/openclaw-hosting/" target="_blank" class="visit-link">Visit &rarr;</a>
+                </div>
+            </div>
+
+            <div class="tool-card" data-category="vps">
+                <div class="tool-card-header">
+                    <span class="tool-card-icon">🚂</span>
+                    <span class="tool-card-badge vps">VPS</span>
+                </div>
+                <h3>Railway</h3>
+                <p class="tool-card-price">~$5&ndash;10/mo</p>
+                <p class="tool-card-description">One-click deploys with auto-scaling. Web-based setup wizard means no terminal needed. Stays under $30 for most indie projects. Official OpenClaw template available.</p>
+                <div class="tool-card-footer">
+                    <span>via <a href="https://x.com/GBuilds" target="_blank">@GBuilds</a></span>
+                    <a href="https://railway.com/deploy/openclaw" target="_blank" class="visit-link">Visit &rarr;</a>
+                </div>
+            </div>
+
+            <div class="tool-card" data-category="vps">
+                <div class="tool-card-header">
+                    <span class="tool-card-icon">🔨</span>
+                    <span class="tool-card-badge vps">VPS</span>
+                </div>
+                <h3>Laravel Forge</h3>
+                <p class="tool-card-price">$5/mo droplet + Forge fee</p>
+                <p class="tool-card-description">Dead simple on $5 DigitalOcean droplets. If you're already in the Laravel ecosystem, this is the path of least resistance.</p>
+                <div class="tool-card-footer">
+                    <span>via <a href="https://x.com/CChirchi" target="_blank">@CChirchi</a></span>
+                    <a href="https://forge.laravel.com" target="_blank" class="visit-link">Visit &rarr;</a>
+                </div>
+            </div>
+
+            <div class="tool-card" data-category="vps">
+                <div class="tool-card-header">
+                    <span class="tool-card-icon">&#9881;&#65039;</span>
+                    <span class="tool-card-badge vps">VPS</span>
+                </div>
+                <h3>CreateOS (NodeOps)</h3>
+                <p class="tool-card-price">Check site for pricing</p>
+                <p class="tool-card-description">Smooth and seamless deployment via the NodeOps network. A different approach to VPS hosting with a focus on simplicity.</p>
+                <div class="tool-card-footer">
+                    <span>via <a href="https://x.com/RicoDC95" target="_blank">@RicoDC95</a></span>
+                    <a href="https://createos.nodeops.network" target="_blank" class="visit-link">Visit &rarr;</a>
+                </div>
+            </div>
+
+            <!-- Dev & Multi-Agent Tools -->
+            <div class="tool-card" data-category="oss">
+                <div class="tool-card-header">
+                    <span class="tool-card-icon">🔀</span>
+                    <span class="tool-card-badge oss">Open Source</span>
+                </div>
+                <h3>Clawe</h3>
+                <p class="tool-card-price">Free / OSS</p>
+                <p class="tool-card-description">Open source multi-agent coordination system powered by OpenClaw. For actual devs who want to orchestrate multiple agents working together.</p>
+                <div class="tool-card-footer">
+                    <span>via <a href="https://x.com/jonathanfishner" target="_blank">@jonathanfishner</a></span>
+                    <a href="https://github.com/getclawe/clawe" target="_blank" class="visit-link">GitHub &rarr;</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Hits -->
+        <div class="quick-recap">
+            <h2>Quick Hits</h2>
+            <ul>
+                <li>Seafloor is the fastest zero-setup option</li>
+                <li>Tiller starts at just &euro;3/mo</li>
+                <li>Hostinger is the most-mentioned VPS choice</li>
+                <li>Oracle Cloud free tier = 24GB RAM for $0</li>
+                <li>Railway has official one-click templates</li>
+                <li>Emergent provisions everything in ~5 minutes</li>
+                <li>ClawPlane deploys with Telegram + Gmail in 1 min</li>
+                <li>getclaw.sh runs on Cloudflare for $10/mo</li>
+                <li>Coolify + Hetzner is the smoothest self-hosted path</li>
+                <li>Don't forget: you still need LLM API credits</li>
+            </ul>
+        </div>
+
+        <footer>
+            <p class="footer-tagline">Vibe coded by <a href="https://x.com/thisiskp_" target="_blank">KP</a> featuring Claude and Netlify</p>
+        </footer>
+    </div>
+
+    <script>
+        function filterTools(category, btn) {
+            const cards = document.querySelectorAll('.tool-card');
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        }
+    </script>
+</body>
+</html>
